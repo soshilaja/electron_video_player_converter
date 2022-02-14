@@ -37,12 +37,12 @@ A newly created Electron window comes preloaded with a default menu containing a
 The beginnings of the custom menu should contain the following:
 
 •	File
-o	Video
-	Load…
-o	[Separator Line]
-o	Quit
+    o	Video
+        	Load…
+    o	[Separator Line]
+    o	Quit
 •	Developer
-o	Toggle Developer Tools
+    o	Toggle Developer Tools
 
 Logic should also be added to accommodate whether the app is running on a Mac versus other operating systems. If running on a Mac, the menu should be modified to accommodate the uniqueness of Macos’ menu structure. 
 

@@ -1,0 +1,23 @@
+{
+  "name": "assignment-electron-soshilaja",
+  "version": "1.0.0",
+  "description": "Electron Video Player",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NSCC-Winter2022-APPD5015/assignment-electron-soshilaja.git"
+  },
+  "keywords": [],
+  "author": "Stephen Oshilaja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NSCC-Winter2022-APPD5015/assignment-electron-soshilaja/issues"
+  },
+  "homepage": "https://github.com/NSCC-Winter2022-APPD5015/assignment-electron-soshilaja#readme",
+  "dependencies": {
+    "electron": "^17.0.0"
+  }
+}
