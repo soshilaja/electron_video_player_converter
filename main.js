@@ -16,7 +16,7 @@ const createWindow = () => {
     
 }
 
-//Promise function to wait to  creaye window when app module is ready
+//Promise function to wait to  create window when app module is ready
 app.whenReady().then(() => {
     createWindow();
   })
