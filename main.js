@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
 
 // determine if this is running on a mac
 const isMac = process.platform === 'darwin';
@@ -30,10 +30,23 @@ const menuTemplate = [
             //custom video and load label
             {label: 'Video',
             submenu: [
-                {label: 'Load'}
+                {label: 'Load...',
+                click(){
+                    //create a dialogue object
+                    dialog.showOpenDialog({ properties: ['openFile', 'multiSelections'] })
+                }
+            }
             ]},
             { type: 'separator' },
-            { role: 'quit' }
+            // { role: 'quit' },
+            {
+                label: 'Quit',
+                //accelerator for mac and windows
+                accelerator: isMac ? 'Cmd+Q' : 'Ctrl+Q',
+                click(){
+                    app.quit()
+                }
+            },
         ]
     },
     {
