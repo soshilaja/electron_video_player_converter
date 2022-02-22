@@ -4,6 +4,7 @@
   "description": "Electron Video Player",
   "main": "main.js",
   "scripts": {
+    "type": "module",
     "start": "electron ."
   },
   "repository": {

@@ -1,24 +1,39 @@
-const { app, BrowserWindow, Menu, dialog } = require('electron');
+const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron');
+const path = require('path');
 
 // determine if this is running on a mac
 const isMac = process.platform === 'darwin';
 
+
 //Create the window in which the video will load
 const createWindow = () => {
-    const win = new BrowserWindow({ width: 1000, height: 605, resizable: false, show: false});
+    const mainWindow = new BrowserWindow({ 
+        width: 1000, 
+        height: 605, 
+        resizable: false, 
+        show: false,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+          }
+    });
     
     //Load our local HTML file
-    win.loadFile('index.html')
+    mainWindow.loadFile('index.html')
 
-    win.once('ready-to-show', () => {
-        win.show()
+    // helps to load the window all at once
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
     })
     
 }
 
 //Promise function to wait to  create window when app module is ready
 app.whenReady().then(() => {
-    createWindow();
+//     ipcMain.handle('dialogue:openfile', handleFileOpen)
+      createWindow()
+//       app.on('activate', function () {
+//         if (BrowserWindow.getAllWindows().length === 0) createWindow()
+//       })
   })
 
 //create a template
@@ -30,10 +45,20 @@ const menuTemplate = [
             //custom video and load label
             {label: 'Video',
             submenu: [
-                {label: 'Load...',
-                click(){
-                    //create a dialogue object
-                    dialog.showOpenDialog({ properties: ['openFile', 'multiSelections'] })
+                {label: 'Load...', click(){ dialog.showOpenDialog(createWindow, {
+                        filters: [
+                          { name: 'Movies', extensions: ['mkv', 'avi', 'mp4', 'mov', '3gp', 'wmv', 'rmvb', 'flv', 'ogv', 'webm', 'mpeg'] }
+                        ]
+                      })
+                      .then(result => {
+                          if(!result.cancelled){
+                              result.filePaths.forEach(path =>{
+                                  console.log(path);
+                              })
+                          } else {
+                              console.log(cancelled);
+                          }
+                      })
                 }
             }
             ]},
@@ -51,7 +76,7 @@ const menuTemplate = [
     },
     {
         label: 'Developer',
-        submenu:[{role:'toggleDevTools'}]
+        submenu:[{role:'toggleDevTools'},{role:'reload'}]
     }
 ];
 
@@ -62,3 +87,6 @@ if(isMac){
 
 const menu = Menu.buildFromTemplate(menuTemplate)
 Menu.setApplicationMenu(menu)
+
+
+  

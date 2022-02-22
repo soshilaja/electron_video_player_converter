@@ -12,10 +12,11 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1 id="selectFile" hidden>Select a video from the menu</h1>
+        <h1 id="selectFile">
+            Select a video from the menu</h1>
         <video class="js-player">
             <!--source video provided is a placeholder only. You'll need to apply a video to the source tag programatically -->
-            <source src="sample.mp4" />
+            <source id='loadVideo' src="sample.mp4" />
         </video>
     </div>
     <script src="main.js"></script>
