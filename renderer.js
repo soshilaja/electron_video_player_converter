@@ -1,9 +1,13 @@
-const loadVideo = document.getElementById('loadVideo');
-const jsplayer = document.querySelector(".js-player");
+const videoElement = document.getElementById('player')
+const videoSource = document.createElement('source');
 
-window.electronAPI.loadFile((event, value) => {
-  loadVideo.src = 'filePath';
-  jsplayer.load();
-  event.reply('videoLoad', jsplayer.load())
 
+window.electronAPI.onFileDataRetrieved(path => {
+  console.log(path);
+  videoSource.setAttribute('src', path);
+  videoElement.appendChild(videoSource);
+  videoElement.load();
 })
+
+
+
