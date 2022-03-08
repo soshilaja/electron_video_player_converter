@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/NSCC-Winter2022-APPD5015/assignment-electron-soshilaja#readme",
   "dependencies": {
-    "electron": "^17.0.0"
+    "electron": "^17.0.0",
+    "electron-progressbar": "^2.0.1",
+    "ffmpeg-static-electron": "^2.0.3",
+    "ffprobe-static-electron": "^2.0.2",
+    "fluent-ffmpeg": "^2.1.2"
   }
 }
